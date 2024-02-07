@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <style>
+    img {
+      height: 300px;
+    }
+  </style>
+
+  <body>
+    <div class="container text-center">
+      <div class="card mx-auto" style="width: 20rem">
+        <img src="..." class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">No Name</h5>
+          <p class="card-text">
+            <br />
+            <br />
+            <br />
+          </p>
+          <button href="#" class="btn btn-primary">Randomize</button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        $("button").on("click", function () {
+          const rand = Math.ceil(Math.random() * 88);
+
+          $.get(
+            `https://dragonball-api.com/api/characters/${rand}`,
+            function (data) {
+              var na = data["name"];
+              var im = data["image"];
+              var ge = data["gender"];
+              var ra = data["race"];
+              var ki = data["maxKi"];
+
+              $(".card-text").html(
+                `<strong>Gender: </strong> ${ge} <br>
+                <strong>Race: </strong> ${ra} <br>
+                <strong>Max KI: </strong> ${ki} <br>`
+              );
+
+              $(".card-title").text(na);
+
+              $(".card-img-top").attr("src", im);
+            }
+          );
+        });
+      });
+    </script>
+    
+  </body>
+</html>
